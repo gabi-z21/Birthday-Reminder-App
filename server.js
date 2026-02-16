@@ -93,6 +93,24 @@ app.post("/delete-group-member", (req, res) => {
   res.send("Deleted");
 });
 
+// Local 'LLM-like' birthday message generator — randomized templates (no external API)
+function generateBirthdayMessage(name, mode = 'self') {
+  const variants = {
+    self: [
+      `Happy birthday, ${name}! Wishing you a wonderful day filled with joy 🎉`,
+      `Hey ${name} — happy birthday! Hope it's amazing 🥳`,
+      `Happy Birthday ${name}! Celebrate and enjoy your day 🎂`
+    ],
+    notify: [
+      `Heads up — today is ${name}'s birthday! Send them your best wishes 🎉`,
+      `Today is ${name}'s birthday. Consider sending a greeting 🥳`,
+      `${name} celebrates a birthday today — drop them a message 🎂`
+    ]
+  };
+  const arr = variants[mode] || variants.self;
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 // ===== BIRTHDAY EMAILS =====
 function sendBirthdayEmails() {
   const data = readData();
@@ -108,7 +126,7 @@ function sendBirthdayEmails() {
         from: "yourgmail@gmail.com",
         to: member.email,
         subject: "Birthday Reminder 🎉🎂",
-        text: `Today is ${member.name}'s birthday 🎂 send your wishes🥂🥳`
+        text: generateBirthdayMessage(member.name, 'self')
       });
     }
   });
@@ -125,7 +143,7 @@ function sendBirthdayEmails() {
               from: "yourgmail@gmail.com",
               to: other.email,
               subject: "Birthday Reminder 🎉🎂",
-              text: `Today is ${birthdayMember.name}'s birthday 🎂! 🎉`
+              text: generateBirthdayMessage(birthdayMember.name, 'notify')
             });
           }
         });
