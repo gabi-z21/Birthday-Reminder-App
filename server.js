@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const fs = require("fs");
 const nodemailer = require("nodemailer");
@@ -15,8 +17,8 @@ app.use(express.static("public")); // for HTML + JS + CSS
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "gabrized57@gmail.com",
-    pass: "ieahpwplppyuhcht"
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
 });
 
@@ -135,7 +137,7 @@ function sendBirthdayEmails() {
 }
 
 // run every midnight
-cron.schedule("0 0 * * *", sendBirthdayEmails);
+cron.schedule("* * * * *", sendBirthdayEmails);
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
 
