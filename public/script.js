@@ -1,4 +1,4 @@
-// ===== SELECT ELEMENTS =====
+// ===== SELECT ELEMENTS =====  // ✨ PR-note
 const addBtn = document.getElementById("addBtn");
 const soloBtn = document.getElementById("soloBtn");
 const groupBtn = document.getElementById("groupBtn");
@@ -44,7 +44,7 @@ groupBtn.onclick = () => {
 document.getElementById("submitsolo").onclick = async () => {
   const res = await fetch("/add-solo", {
     method: "POST",
-    headers: {"Content-Type":"application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       name: nameInput.value,
       birthday: birthdayInput.value,
@@ -54,9 +54,9 @@ document.getElementById("submitsolo").onclick = async () => {
 
   alert(await res.text());
 
- nameInput.value = "";
- birthdayInput.value = "";
- emailInput.value = "";
+  nameInput.value = "";
+  birthdayInput.value = "";
+  emailInput.value = "";
 
   soloForm.style.display = "none";
   loadData();
@@ -69,56 +69,56 @@ document.getElementById("submitgroup").onclick = async () => {
   const members = [];
 
   document.querySelectorAll("#membersList div").forEach(div => {
-     const name = div.querySelector(".memberName").value;
-      const birthday = div.querySelector(".memberBirthday").value;
-      const email = div.querySelector(".memberEmail").value;
+    const name = div.querySelector(".memberName").value;
+    const birthday = div.querySelector(".memberBirthday").value;
+    const email = div.querySelector(".memberEmail").value;
 
-    if(name && birthday && email){
+    if (name && birthday && email) {
       members.push({ name, birthday, email });
     }
   });
-  if(!groupName || members.length === 0) {
+  if (!groupName || members.length === 0) {
     alert("Group need members");
     return;
   }
-const data = await fetch("/data").then(r=>r.json());
+  const data = await fetch("/data").then(r => r.json());
 
-if(editingGroupIndex !== null){
-  data.groups[editingGroupIndex] = {groupName, members};
-  editingGroupIndex = null;
-  alert("Group updated!");
-}else{
-  data.groups.push({groupName, members});
-  alert("Group added!");
-}
+  if (editingGroupIndex !== null) {
+    data.groups[editingGroupIndex] = { groupName, members };
+    editingGroupIndex = null;
+    alert("Group updated!");
+  } else {
+    data.groups.push({ groupName, members });
+    alert("Group added!");
+  }
 
-await fetch("/save-all",{
-  method:"POST",
-  headers:{"Content-Type":"application/json"},
-  body: JSON.stringify(data)
-});
+  await fetch("/save-all", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
 
 
-  
+
 
   document.getElementById("groupName").value = "";
   document.getElementById("membersList").innerHTML = "";
-  
 
-groupForm.style.display = "none";
-add
+
+  groupForm.style.display = "none";
+  add
   loadData();
 };
 
 // ===== LOAD DATA =====
-async function loadData(){
+async function loadData() {
   const res = await fetch("/data");
   const data = await res.json();
 
   list.innerHTML = "";
 
   // SOLO LIST
-  data.solo.forEach((m,i)=>{
+  data.solo.forEach((m, i) => {
     const div = document.createElement("div");
     div.innerHTML = `
       👤 
@@ -133,8 +133,8 @@ async function loadData(){
   });
 
   // GROUP LIST
-  data.groups.forEach((g,gi)=>{
-      if(g.members && !Array.isArray(g.members)) return;
+  data.groups.forEach((g, gi) => {
+    if (g.members && !Array.isArray(g.members)) return;
 
     const gDiv = document.createElement("div");
     gDiv.innerHTML = `<h3>👥 
@@ -143,7 +143,7 @@ async function loadData(){
     <button onclick="deleteGroup(${gi})">❌</button>
     </h3>`;
 
-    g.members.forEach((m,mi)=>{
+    g.members.forEach((m, mi) => {
       const mDiv = document.createElement("div");
       mDiv.innerHTML = `
       <input value="${m.name}"  required>
@@ -155,47 +155,47 @@ async function loadData(){
       gDiv.appendChild(mDiv);
     });
 
-  
+
 
     list.appendChild(gDiv);
 
     console.log(data.groups);
- 
+
   });
 }
-function addMemberRow(){
-   const div = document.createElement("div");
+function addMemberRow() {
+  const div = document.createElement("div");
 
-    div.innerHTML = `
+  div.innerHTML = `
     <input placeholder="Name" class="memberName" required>
     <input  type="date" class="memberBirthday" required>
     <input placeholder="email" class="memberEmail" required>
  `;
-    document.getElementById("membersList").appendChild(div);
+  document.getElementById("membersList").appendChild(div);
 }
 document.getElementById("addMemberBtn").onclick = addMemberRow;
 
 // ===== EDIT FUNCTIONS =====
-async function editSolo(i){
-    const name = document.getElementById(`name${i}`).value;
-    const birthday = document.getElementById(`bday${i}`).value;
-    const email = document.getElementById(`email${i}`).value;
+async function editSolo(i) {
+  const name = document.getElementById(`name${i}`).value;
+  const birthday = document.getElementById(`bday${i}`).value;
+  const email = document.getElementById(`email${i}`).value;
 
-    const data = await fetch("/data").then(res=>res.json());
+  const data = await fetch("/data").then(res => res.json());
 
-    data.solo[i] = { name, birthday, email };
+  data.solo[i] = { name, birthday, email };
 
-    await fetch("/save-all",{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify(data)
-    });
+  await fetch("/save-all", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
 
-    alert("Updated!");
+  alert("Updated!");
 }
-async function editGroupName(gi){
+async function editGroupName(gi) {
 
-  const data = await fetch("/data").then(r=>r.json());
+  const data = await fetch("/data").then(r => r.json());
   const group = data.groups[gi];
 
   editingGroupIndex = gi;
@@ -203,37 +203,37 @@ async function editGroupName(gi){
   groupForm.style.display = "block";
   soloForm.style.display = "none";
 
-    document.getElementById("groupName").value = group.groupName;
+  document.getElementById("groupName").value = group.groupName;
 
-    document.getElementById("membersList").innerHTML = "";
+  document.getElementById("membersList").innerHTML = "";
 
-    group.members.forEach(m=>{
-        addMemberRow();
+  group.members.forEach(m => {
+    addMemberRow();
 
-        const lastRow = 
-        document.querySelector("#membersList div:last-child");
+    const lastRow =
+      document.querySelector("#membersList div:last-child");
 
-        lastRow.querySelector(".memberName").value = m.name;
-        lastRow.querySelector(".memberBirthday").value = m.birthday;
-        lastRow.querySelector(".memberEmail").value = m.email;
-    });
-    groupForm.scrollIntoView({ behavior: "smooth" });
+    lastRow.querySelector(".memberName").value = m.name;
+    lastRow.querySelector(".memberBirthday").value = m.birthday;
+    lastRow.querySelector(".memberEmail").value = m.email;
+  });
+  groupForm.scrollIntoView({ behavior: "smooth" });
 }
 
 
-async function editGroupMember(gi,mi){
+async function editGroupMember(gi, mi) {
 
   const name = document.getElementById(`gmname${gi}${mi}`).value;
   const birthday = document.getElementById(`gmbday${gi}${mi}`).value;
   const email = document.getElementById(`gmemail${gi}${mi}`).value;
 
-  const data = await fetch("/data").then(r=>r.json());
+  const data = await fetch("/data").then(r => r.json());
 
-  data.groups[gi].members[mi] = {name,birthday,email};
+  data.groups[gi].members[mi] = { name, birthday, email };
 
-  await fetch("/save-all",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
+  await fetch("/save-all", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
   });
 
@@ -247,29 +247,29 @@ async function editGroupMember(gi,mi){
 
 
 // ===== DELETE FUNCTIONS =====
-async function deleteSolo(i){
-  await fetch("/delete-solo",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({index:i})
+async function deleteSolo(i) {
+  await fetch("/delete-solo", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ index: i })
   });
   loadData();
 }
 
-async function deleteGroup(i){
-  await fetch("/delete-group",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({index:i})
+async function deleteGroup(i) {
+  await fetch("/delete-group", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ index: i })
   });
   loadData();
 }
 
-async function deleteGroupMember(gi,mi){
-  await fetch("/delete-group-member",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({gIndex:gi,mIndex:mi})
+async function deleteGroupMember(gi, mi) {
+  await fetch("/delete-group-member", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ gIndex: gi, mIndex: mi })
   });
   loadData();
 }

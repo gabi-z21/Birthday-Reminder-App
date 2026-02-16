@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Birthday Reminder</title>
+  <title>Birthday Reminder 🎉</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <div class="container">
@@ -14,7 +16,7 @@
 
     <!-- ADD BUTTONS -->
     <div id="buttons">
-     <div> <button id="addBtn">➕</button></div>
+      <div> <button id="addBtn">➕</button></div>
 
       <div id="otherBtn">
         <button id="soloBtn">👤 Solo</button>
@@ -22,36 +24,43 @@
       </div>
     </div>
 
-    </div>
+  </div>
 
-    <!-- LIST CONTAINER -->
-    <div id="list">
-      <!-- JS will dynamically append solo and group divs here -->
-    </div>
-     <!-- SOLO FORM -->
-    <div id="solo-form">
-      <input type="text" id="nameInput" placeholder="Name">
-      <input type="date" id="birthdayInput">
-      <input type="email" id="emailInput" placeholder="Email">
-      <button id="submitsolo">Save</button>
-    </div>
+  <!-- LIST CONTAINER -->
+  <div id="list">
+    <!-- JS will dynamically append solo and group divs here -->
+  </div>
+  <!-- SOLO FORM -->
+  <div id="solo-form">
+    <label for="nameInput">Name:</label>
+    <input type="text" id="nameInput" placeholder="Name">
+    <label for="birthdayInput">Birthday:</label>
+    <input type="date" id="birthdayInput">
+    <label for="emailInput">Email:</label>
+    <input type="email" id="emailInput" placeholder="Email">
 
-    <!-- GROUP FORM -->
-    <div id="group-form">
-      <input type="text" id="groupName" placeholder="Group Name">
-      <div id="membersList">
-        <!-- Default first member input row -->
-        <div>
-          <input class="memberName" placeholder="Name">
-          <input type="date" class="memberBirthday">
-          <input class="memberEmail" placeholder="Email">
-        </div>
-        </div>
-        <button id="addMemberBtn">Add Member</button>
-        <button id="submitgroup">Save Group</button>
+    <button id="submitsolo">Save</button>
+  </div>
+
+  <!-- GROUP FORM -->
+  <div id="group-form">
+    <input type="text" id="groupName" placeholder="Group Name">
+    <div id="membersList">
+      <!-- Default first member input row -->
+      <div>
+        <label for="memberName">Name:</label>
+        <input id="memberName" class="memberName" placeholder="Name">
+        <label for="memberBirthday">Birthday:</label>
+        <input id="memberBirthday" type="date" class="memberBirthday">
+        <input id="memberEmail" class="memberEmail" placeholder="Email">
+      </div>
+    </div>
+    <button id="addMemberBtn">Add Member</button>
+    <button id="submitgroup">Save Group</button>
 
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
