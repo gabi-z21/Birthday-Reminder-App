@@ -32,9 +32,13 @@
   </div>
   <!-- SOLO FORM -->
   <div id="solo-form">
+    <label for="nameInput">Name:</label>
     <input type="text" id="nameInput" placeholder="Name">
+    <label for="birthdayInput">Birthday:</label>
     <input type="date" id="birthdayInput">
+    <label for="emailInput">Email:</label>
     <input type="email" id="emailInput" placeholder="Email">
+
     <button id="submitsolo">Save</button>
   </div>
 
@@ -44,9 +48,11 @@
     <div id="membersList">
       <!-- Default first member input row -->
       <div>
-        <input class="memberName" placeholder="Name">
-        <input type="date" class="memberBirthday">
-        <input class="memberEmail" placeholder="Email">
+        <label for="memberName">Name:</label>
+        <input id="memberName" class="memberName" placeholder="Name">
+        <label for="memberBirthday">Birthday:</label>
+        <input id="memberBirthday" type="date" class="memberBirthday">
+        <input id="memberEmail" class="memberEmail" placeholder="Email">
       </div>
     </div>
     <button id="addMemberBtn">Add Member</button>
