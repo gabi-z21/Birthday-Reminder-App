@@ -137,7 +137,7 @@ function sendBirthdayEmails() {
 }
 
 // run every midnight
-cron.schedule("* * * * *", sendBirthdayEmails);
+cron.schedule("0 0 * * *", sendBirthdayEmails);
 
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
 
