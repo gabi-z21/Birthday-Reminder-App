@@ -53,6 +53,11 @@ document.getElementById("submitsolo").onclick = async () => {
   });
 
   alert(await res.text());
+
+ nameInput.value = "";
+ birthdayInput.value = "";
+ emailInput.value = "";
+
   soloForm.style.display = "none";
   loadData();
 };
