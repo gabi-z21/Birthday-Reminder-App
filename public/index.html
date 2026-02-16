@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Reminder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Birthday Reminder</h1>
+
+    <!-- ADD BUTTONS -->
+    <div id="buttons">
+     <div> <button id="addBtn">➕</button></div>
+
+      <div id="otherBtn">
+        <button id="soloBtn">👤 Solo</button>
+        <button id="groupBtn">👥 Group</button>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- LIST CONTAINER -->
+    <div id="list">
+      <!-- JS will dynamically append solo and group divs here -->
+    </div>
+     <!-- SOLO FORM -->
+    <div id="solo-form">
+      <input type="text" id="nameInput" placeholder="Name">
+      <input type="date" id="birthdayInput">
+      <input type="email" id="emailInput" placeholder="Email">
+      <button id="submitsolo">Save</button>
+    </div>
+
+    <!-- GROUP FORM -->
+    <div id="group-form">
+      <input type="text" id="groupName" placeholder="Group Name">
+      <div id="membersList">
+        <!-- Default first member input row -->
+        <div>
+          <input class="memberName" placeholder="Name">
+          <input type="date" class="memberBirthday">
+          <input class="memberEmail" placeholder="Email">
+        </div>
+        </div>
+        <button id="addMemberBtn">Add Member</button>
+        <button id="submitgroup">Save Group</button>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

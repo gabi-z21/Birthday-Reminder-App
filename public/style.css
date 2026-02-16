@@ -1,0 +1,190 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+    background-image: url("birthday-background-with-cake-illustration-ai-generative-free-photo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    
+}
+h1 {
+    margin-top: 20px;
+    font-family: monospace;
+    font-weight: bold;
+    color:rgb(251, 232, 209);
+    text-align: center;
+}
+
+#list {
+    font-size: 30px;
+    color:crimson;
+    max-width: 600px;
+    margin-top: 20px;
+   
+
+}
+body::before {
+    content:"";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: -1;
+}
+#buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+#addBtn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+
+    font-size: 24px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+}
+#otherBtn {
+    display:flex;
+    flex-direction: row;
+    gap: 10px;
+}
+button {
+    cursor: pointer;
+    padding: 1px 1px;
+    border-radius: 5px;
+    border: solid 2px rgb(255, 228, 196);
+    background-color: rgb(255, 228, 196);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    font-size: 16px;
+    transition: 0.2s;
+
+
+}
+button:hover {
+    background-color: rgb(255, 255, 240);
+}
+#solo-form, #group-form {
+    display: none;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-top: solid 1px #ddd;
+
+}
+
+#solo-form input,
+#group-form input {
+    padding: 5px;
+    margin: 5px 0;
+    width: calc(100% - 20px);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #d8c5c5 ;
+
+}
+
+#membersList div {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+#membersList input {
+  flex: 1;
+}
+
+
+#list div {
+  border: 1px solid #d8c5c5;
+  padding: 5px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  background-color: #d8c5c5;
+  display: flex; 
+  flex-direction: column;
+  gap: 5px;
+}
+
+#list h3 {
+  display: block;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 5px 0;
+}
+
+/* ===== MEMBER ROWS ===== */
+
+
+#list input {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+/* ===== DELETE BUTTONS ===== */
+
+
+#list button:hover {
+  background-color: #fca9a0;
+}
+@media (min-width: 700px) {
+    #list {
+        max-width: 800px;
+    }
+    #list > div > div {
+        flex-direction: row;
+        align-items: center;
+    }
+    #list input {
+        flex: 1;
+
+    }
+
+    .card {
+        padding: 30px;
+        font-size: 30px;
+    }
+    .info {
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+    .info-row {
+        display: grid;
+        grid-template-columns: 200px 150px 250px; 
+        gap: 20px; 
+}
+
+    .info-row span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+}
+   
+    .actions {
+        text-align: left;
+    }
+}
